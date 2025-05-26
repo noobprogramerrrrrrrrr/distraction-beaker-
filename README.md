@@ -1,4 +1,3 @@
-# distraction-beaker-
 # Productivity Chrome Extension with Flask Backend
 
 This project is a browser productivity tracker and website blocker built using a Chrome extension and a Python Flask backend. It tracks time spent on websites, classifies it as productive or unproductive, and dynamically adjusts website blocking rules based on productivity levels.
@@ -62,11 +61,36 @@ This will start a server on `http://localhost:5000`
 3. Click **Load unpacked**
 4. Select the `extension/` directory
 
-### 5. Start Using
+### 5. Lock Extension (Optional)
 
-* Visit `pw.live` or other productive sites
-* Open YouTube, Reddit, etc. to test blocking
-* Track your time and view `log.json` for logs
+To prevent disabling the extension, you can use Chrome policies (for Windows):
+
+1. Open `regedit`
+2. Navigate to:
+
+   ```
+   HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\ExtensionInstallForcelist
+   ```
+3. Add a new string value:
+
+   ```
+   Name: 1
+   Value: bachipeoekbkldoaffnaaidkbnimoijm;https://clients2.google.com/service/update2/crx
+   ```
+4. Restart Chrome.
+
+### 6. Run Python Scripts at Startup (Windows)
+
+1. Open `Run` → type `shell:startup`
+2. Add shortcuts to `main.py` and `tel.py` in this folder
+3. Use a `.bat` file if needed:
+
+   ```bat
+   @echo off
+   cd /d C:\path\to\pyserver
+   start python main.py
+   start python tel.py
+   ```
 
 ---
 
@@ -77,7 +101,7 @@ This will start a server on `http://localhost:5000`
   ```bash
   sudo chattr +i log.json
   ```
-* Disable `chrome://extensions` with kiosk mode or custom policies
+* Disable `chrome://extensions` with kiosk mode or custom policies (if supported)
 
 ---
 
@@ -112,14 +136,10 @@ This tool is perfect for:
 
 ---
 
-##
-
----
-
 ## ✨ Contribute
 
 Pull requests are welcome! For major changes, open an issue first to discuss what you would like to change.
 
 ---
 
-## 😊 Created by \[Your Name] - Built for better focus and productivity!
+## 😊 Created by Rishabh - Built for better focus and productivity!
