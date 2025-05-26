@@ -12,6 +12,15 @@ CHAT_ID = 5080266166 # Primary user's chat ID
 
 # File to store authorized chat IDs
 AUTH_FILE = "authorized_users.json"
+classes = [[(16, 0),(17, 30)],[(17,35),(19,25)],[(19,25),(21,30)]]  # Class timings in IST
+def convert_class_to_attendance_time(classes):
+    table ={}
+    for Class in classes:
+        start, end = Class
+        start_time = time(*start)
+        end_time = time(*end)
+        table[f"{start_time}–{end_time}"]=check_attendance_for_interval(pw_history, start_time, end_time)
+    return table    
 
 # Load or create authorized users list
 def load_authorized_users():
@@ -202,12 +211,7 @@ async def check_attendance_command(update, context):
     pw_history = data.get("history", {}).get("www.pw.live", [])
 
     # Define class intervals (in IST)
-    attendance = {
-        "16:00–17:40": check_attendance_for_interval(pw_history, time(16, 0), time(17, 40)),
-        "17:55–19:25": check_attendance_for_interval(pw_history, time(17, 55), time(19, 25)),
-        "19:30–21:30": check_attendance_for_interval(pw_history, time(19, 30), time(21, 30)),
-    }
-
+    attendance= convert_class_to_attendance_time(classes)
     msg = "📚 Live Class Attendance:\n\n"
     for slot, present in attendance.items():
         status = give_status(present,slot)
@@ -222,12 +226,7 @@ async def check_attendance(context):
     pw_history = data.get("history", {}).get("www.pw.live", [])
 
     # Define class intervals (in IST)
-    attendance = {
-        "16:00–17:40": check_attendance_for_interval(pw_history, time(16, 0), time(17, 40)),
-        "17:55–19:25": check_attendance_for_interval(pw_history, time(17, 55), time(18, 25)),
-        "19:30–21:30": check_attendance_for_interval(pw_history, time(19, 30), time(20, 0)),
-    }
-
+    attendance =convert_class_to_attendance_time(classes)
     msg = "📚 Live Class Attendance:\n\n"
     for slot, present in attendance.items():
         status = give_status(present, slot)
