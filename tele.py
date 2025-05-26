@@ -7,8 +7,8 @@ from telegram.ext import CommandHandler
 from telegram import Update
 
 LOG = "log.json"
-BOT_TOKEN = "7641027302:AAHfbR_mm6yezdi-rm0jn0LmgDbY3TLucb8"  # Replace with your actual bot token
-CHAT_ID = 5080266166 # Primary user's chat ID
+BOT_TOKEN = ""  # Replace with your actual bot token
+CHAT_ID = this id you would find in telegram  # Primary user's chat ID
 
 # File to store authorized chat IDs
 AUTH_FILE = "authorized_users.json"
