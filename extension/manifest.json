@@ -1,0 +1,27 @@
+{ 
+ "manifest_version": 3,
+ "name":"PW reward",
+ "version":"1.0",
+ "description":"This extension is used to reward the user for using the app.",
+ "permissions": [
+   "storage",
+   "scripting",
+   "activeTab",
+    "tabs",
+    "idle",
+    "alarms",
+    "nativeMessaging",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+
+ ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+    "service_worker": "background.js"
+    },
+    "action":{
+        "default_title":"PW reward"
+    }
+}
